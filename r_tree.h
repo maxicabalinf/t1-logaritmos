@@ -8,21 +8,22 @@ using namespace std;
 #define MAX_CHILDS 2
 
 /** Representación de un rectángulo. */
-typedef array<double, 4> Rectangle;
+typedef array<double, 4> Rectangle; /* <xmin, ymin, xmax, ymax> */
 
 /**
  * @brief Representación de un nodo del árbol R.
  *
  */
 class Node {
-   private:
-    vector<Rectangle> keys;
-    vector<Node*> children;
+   public:
+    vector<Rectangle *> keys;
+    vector<Node *> children;
     int max_children;
     bool is_leaf;
 
-   public:
-    Node(vector<Rectangle> keys, vector<Node*> children, int max_children);
+    Node(vector<Rectangle *> keys, vector<Node *> children, int max_children);
 
     int children_qty();
+
+    static Node *toNode(Rectangle rectangle);
 };
