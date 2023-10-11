@@ -28,7 +28,7 @@ bool sort_by_X(const tuple<Point, Node*, Rectangle*>& a, const tuple<Point, Node
  * @param M Cantidad máxima de hijos por nodo
  * @return Puntero a la raiz del árbol
  */
-Node* r_tree_nearest_X(vector<Rectangle*> initial_associated_rectangles, int M) {
+Node* Node::r_tree_nearest_X(vector<Rectangle*> initial_associated_rectangles, int M) {
     vector<Node*> nodes;
     vector<Rectangle*> associated_rectangles = initial_associated_rectangles;
     int n = size(initial_associated_rectangles); /* Cantidad de nodos que se está usando. */

@@ -23,6 +23,8 @@ class Node {
 
     Node(vector<Rectangle *> keys, vector<Node *> children, int max_children);
 
+    Node *r_tree_nearest_X(vector<Rectangle *> initial_associated_rectangles, int M);
+
     int children_qty();
 
     static Node *toNode(Rectangle rectangle);
