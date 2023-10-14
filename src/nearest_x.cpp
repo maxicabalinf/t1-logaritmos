@@ -15,7 +15,7 @@ using namespace std;
  * @return true
  * @return false
  */
-bool sort_by_X(const tuple<Point, int, Rectangle>& a, const tuple<Point, int, Rectangle>& b) {
+bool sort_by_X(const tuple<Point, Node, Rectangle>& a, const tuple<Point, Node, Rectangle>& b) {
     return get<0>(a)[0] < get<0>(b)[0];
 };
 
@@ -115,6 +115,7 @@ void Node::r_tree_nearest_X(vector<Rectangle> initial_associated_rectangles, int
         if (n_parents == 1) {
             /* Escribe el nodo raíz en el archivo */
             tree_file.write((char*)&parent_nodes[0], sizeof(Node));
+            // cout.write((char*)&parent_nodes[0], sizeof(Node));
             tree_file.close();
         }
 
