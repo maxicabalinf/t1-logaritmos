@@ -5,10 +5,9 @@
 
 using namespace std;
 
-#define MAX_CHILDS 2
+#define MAX_CHILDREN 2
 
-/** Representación de un rectángulo. */
-typedef array<double, 4> Rectangle; /* <xmin, ymin, xmax, ymax> */
+typedef array<int, 4> Rectangle; /* Representación de un rectángulo como <xmin, ymin, xmax, ymax> */
 
 /**
  * @brief Representación de un nodo del árbol R.
@@ -16,16 +15,16 @@ typedef array<double, 4> Rectangle; /* <xmin, ymin, xmax, ymax> */
  */
 class Node {
    public:
-    vector<Rectangle *> keys;
-    vector<Node *> children;
+    vector<Rectangle> keys;
+    vector<int> children;
     int max_children;
     bool is_leaf;
 
-    Node(vector<Rectangle *> keys, vector<Node *> children, int max_children);
+    Node(vector<Rectangle> keys, vector<int> children, int max_children);
 
-    Node *r_tree_nearest_X(vector<Rectangle *> initial_associated_rectangles, int M);
+    static void r_tree_nearest_X(vector<Rectangle> initial_associated_rectangles, int M, string file_name);
 
     int children_qty();
 
-    static Node *toNode(Rectangle rectangle);
+    static Node toNode(Rectangle rectangle);
 };
