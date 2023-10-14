@@ -20,6 +20,8 @@ class Node {
     int children_qty;
     bool is_leaf;
 
+    Node(void);
+
     Node(vector<Rectangle> keys, vector<int> children, int children_qty);
 
     static void r_tree_nearest_X(vector<Rectangle> initial_associated_rectangles, int M, string file_name);

@@ -7,6 +7,8 @@
 #include <tuple>
 #include <vector>
 
+Node::Node() {}
+
 Node::Node(vector<Rectangle> keys, vector<int> children, int children_qty) {
     this->keys = keys;
     this->children = children;
