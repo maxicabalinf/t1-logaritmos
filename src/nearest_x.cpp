@@ -1,4 +1,4 @@
-// Implementación del método Nearest-X para construcción de árboles R.
+/* Implementación del método Nearest-X para construcción de árboles R. */
 
 #include <math.h>
 
