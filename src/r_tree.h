@@ -17,14 +17,12 @@ class Node {
    public:
     vector<Rectangle> keys;
     vector<int> children;
-    int max_children;
+    int children_qty;
     bool is_leaf;
 
-    Node(vector<Rectangle> keys, vector<int> children, int max_children);
+    Node(vector<Rectangle> keys, vector<int> children, int children_qty);
 
     static void r_tree_nearest_X(vector<Rectangle> initial_associated_rectangles, int M, string file_name);
-
-    int children_qty();
 
     static Node toNode(Rectangle rectangle);
 };

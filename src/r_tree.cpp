@@ -7,14 +7,10 @@
 #include <tuple>
 #include <vector>
 
-Node::Node(vector<Rectangle> keys, vector<int> children, int max_children) {
+Node::Node(vector<Rectangle> keys, vector<int> children, int children_qty) {
     this->keys = keys;
     this->children = children;
-    this->max_children = max_children;
-}
-
-int Node::children_qty() {
-    return size(children);
+    this->children_qty = children_qty;
 }
 
 Node Node::toNode(Rectangle rectangle) {
