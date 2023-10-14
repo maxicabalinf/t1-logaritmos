@@ -1,9 +1,10 @@
+#include "exec.h"
+
 #include <cstdarg>
 #include <cstdio>
 #include <fstream>
 #include <iostream>
 #include <memory>
-#include <string>
 
 std::string exec(const char* cmd) {
     std::shared_ptr<FILE> pipe(popen(cmd, "r"), pclose);
