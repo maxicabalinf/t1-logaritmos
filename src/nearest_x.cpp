@@ -29,7 +29,7 @@ bool sort_by_X(const tuple<Point, int, Rectangle>& a, const tuple<Point, int, Re
  */
 void Node::r_tree_nearest_X(vector<Rectangle> initial_associated_rectangles, int M, string file_name) {
     ofstream tree_file; /* Archivo que almacena el árbol resultante. */
-    tree_file.open(file_name, ios::out|ios::binary);
+    tree_file.open(file_name, ios::out | ios::binary);
 
     int written_nodes = 0; /* Contador de nodos escritos en archivo. */
     int first_iteration = true;
