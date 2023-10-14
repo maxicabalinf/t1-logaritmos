@@ -83,7 +83,7 @@ void Node::r_tree_nearest_X(vector<Rectangle> initial_associated_rectangles, int
             }
 
             /* Crea el i-esimo nodo padre de esta iteración. */
-            Node ith_node(keys, children_file_indexes, M);
+            Node ith_node(keys, children_file_indexes, n_children);
             parent_nodes[i] = ith_node;
         }
 
