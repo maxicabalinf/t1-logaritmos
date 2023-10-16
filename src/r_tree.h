@@ -30,6 +30,8 @@ class Node {
 
     static void r_tree_nearest_X(vector<Rectangle> initial_associated_rectangles, int M, string file_name);
 
+    static void r_tree_sort_tile_recursive(vector<Rectangle> initial_associated_rectangles, int M, string file_name);
+
     static Node toNode(Rectangle rectangle);
 
     template <typename T>
