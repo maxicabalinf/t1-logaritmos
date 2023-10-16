@@ -12,10 +12,10 @@ CFLAGS  = -g -O3
 default: test_tree_construction
 
 test_tree_construction: test_tree_construction.o
-	$(CC) $(CFLAGS) -o test_tree_construction test_tree_construction.o r_tree.o nearest_x.o exec.o
+	$(CC) $(CFLAGS) -o test_tree_construction test_tree_construction.o r_tree.o nearest_x.o exec.o sort_tile_recursive.o hilbert.o
 
 test_tree_construction.o:
-	$(CC) $(CFLAGS) -c ./test/test_tree_construction.cpp ./src/r_tree.cpp ./src/nearest_x.cpp ./src/exec.cpp
+	$(CC) $(CFLAGS) -c ./test/test_tree_construction.cpp ./src/r_tree.cpp ./src/nearest_x.cpp ./src/exec.cpp ./src/sort_tile_recursive.cpp ./src/hilbert.cpp
 
 # r_tree.o:
 # 	$(CC) $(CFLAGS) -c ./src/r_tree.cpp ./src/nearest_x.cpp
