@@ -33,8 +33,9 @@ bool rectangles_intersect(Rectangle rec1, Rectangle rec2) {
 vector<Node> file_to_r_tree(string file_name) {
     fstream nodes_source(file_name, ios::in | ios::binary);
     vector<Node> r_tree;
+    long int max_nodes = ceil(sizeof(nodes_source)/sizeof(Node));
     long int i = 0;
-    while (true) {
+    while (i<max_nodes){
         Node obtained_node = Node::readNode(nodes_source, i);
         r_tree.push_back(obtained_node);
         i++;

@@ -34,8 +34,16 @@ void test_search(void){
     vector<Node> r_tree = file_to_r_tree("r_tree");
     vector<Rectangle> intersections;
     Node::r_tree_rectangle_search(to_search, intersections, r_tree, 7);
+    vector<Rectangle> expected_search = {
+        (Rectangle){1,1,1,1},
+        (Rectangle){2,2,2,2}
+    };
+    assert(intersections[0]==expected_search[0]);
+    assert(intersections[1]==expected_search[1]);
 
+}
 
-
-
+int main(int argc, char *argv[]) {
+    test_search();
+    return 0;
 }
