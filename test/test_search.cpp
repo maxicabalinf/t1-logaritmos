@@ -32,7 +32,8 @@ void test_search(void){
     expected_file.close();
 
     vector<Node> r_tree = file_to_r_tree("r_tree");
-    vector<Node> intersections;
+    vector<Rectangle> intersections;
+    Node::r_tree_rectangle_search(to_search, intersections, r_tree, 7);
 
 
 

@@ -39,7 +39,7 @@ class Node {
 
     static void r_tree_hilbert(vector<Rectangle> initial_associated_rectangles, int M, string file_name);
 
-    void r_tree_rectangle_search(Rectangle rec_to_search, vector<Rectangle> to_fill, vector<Node> r_tree, long int index);
+    static void r_tree_rectangle_search(Rectangle rec_to_search, vector<Rectangle> to_fill, vector<Node> r_tree, long int index);
 
     static Node toNode(Rectangle rectangle);
 
