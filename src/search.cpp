@@ -19,7 +19,7 @@ bool rectangles_intersect(Rectangle rec1, Rectangle rec2) {
     if (rec2[2] < rec1[0] || rec1[2] < rec2[2] || rec2[3] < rec1[1] || rec1[3] < rec1[1]) {
         return false;
     }
-    
+
     return true;
 }
 
@@ -51,23 +51,32 @@ vector<Node> file_to_r_tree(string file_name) {
  * @param index La llave del nodo a evaluar, se parte con el nodo raiz.
  *
  */
-void Node::r_tree_rectangle_search(Rectangle rec_to_search, vector<Rectangle> to_fill, vector<Node> r_tree, long int index) {
-    Node obtained_node = r_tree[index];
-
-    // Si el nodo es una hoja, evaluamos interseccion y insertamos o no en to_fill
-    if (obtained_node.is_leaf) {
-        if (rectangles_intersect(obtained_node.keys[0], rec_to_search)) {
-            to_fill.push_back(obtained_node.keys[0]);
-        }
-    }
-
-    // Si el nodo no es hoja, evaluamos interseccion y aplicamos o no recursion con nuevo indice.
-    else {
-        for (long int i = 0; i < obtained_node.keys_qty; i++) {
-            if (rectangles_intersect(obtained_node.keys[i], rec_to_search)) {
-                long int index_wanted = obtained_node.children[i];
-                r_tree_rectangle_search(rec_to_search, to_fill, r_tree, index_wanted);
+tuple<vector<Rectangle>, int> Node::r_tree_rectangle_search(Rectangle rec_to_search, string filename) {
+    // TODO clear cache
+    queue<int> remaining_nodes_indexes;
+    fstream tree_file(filename, ios::in | ios::binary);
+    tree_file.seekg(0, ios::end);
+    int file_size = tree_file.tellg();
+    int n_nodes = file_size / sizeof(Node);
+    remaining_nodes_indexes.push(n_nodes - 1);
+    int block_accesses = 0;
+    vector<Rectangle> results;
+    while (!remaining_nodes_indexes.empty()) {
+        Node actual_branch = Node::readNode(tree_file, remaining_nodes_indexes.front());
+        remaining_nodes_indexes.pop();
+        block_accesses += 1;
+        if (actual_branch.is_leaf && rectangles_intersect(rec_to_search, actual_branch.keys[0])) {
+            results.push_back(actual_branch.keys[0]);
+        } else {
+            int n_children = actual_branch.keys_qty;
+            for (int i = 0; i < n_children; i++) {
+                if (rectangles_intersect(rec_to_search, actual_branch.keys[i])) {
+                    remaining_nodes_indexes.push(actual_branch.children[i]);
+                }
             }
         }
     }
+    tree_file.close();
+
+    return make_tuple(results, block_accesses);
 }
