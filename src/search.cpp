@@ -16,7 +16,7 @@
  *
  */
 bool rectangles_intersect(Rectangle rec1, Rectangle rec2) {
-    if (rec2[2] < rec1[0] || rec1[2] < rec2[2] || rec2[3] < rec1[1] || rec1[3] < rec1[1]) {
+    if (rec1[0] > rec2[2] || rec1[2] < rec2[0] || rec1[1] > rec2[3] || rec1[3] < rec1[1]) {
         return false;
     }
 
@@ -33,9 +33,9 @@ bool rectangles_intersect(Rectangle rec1, Rectangle rec2) {
 vector<Node> file_to_r_tree(string file_name) {
     fstream nodes_source(file_name, ios::in | ios::binary);
     vector<Node> r_tree;
-    long int max_nodes = ceil(sizeof(nodes_source)/sizeof(Node));
+    long int max_nodes = ceil(sizeof(nodes_source) / sizeof(Node));
     long int i = 0;
-    while (i<max_nodes){
+    while (i < max_nodes) {
         Node obtained_node = Node::readNode(nodes_source, i);
         r_tree.push_back(obtained_node);
         i++;
@@ -66,11 +66,13 @@ tuple<vector<Rectangle>, int> Node::r_tree_rectangle_search(Rectangle rec_to_sea
         Node actual_branch = Node::readNode(tree_file, remaining_nodes_indexes.front());
         remaining_nodes_indexes.pop();
         block_accesses += 1;
-        if (actual_branch.is_leaf && rectangles_intersect(rec_to_search, actual_branch.keys[0])) {
-            results.push_back(actual_branch.keys[0]);
+        int n_keys = actual_branch.keys_qty;
+        if (actual_branch.is_leaf) {
+            if (rectangles_intersect(rec_to_search, actual_branch.keys[0])) {
+                results.push_back(actual_branch.keys[0]);
+            }
         } else {
-            int n_children = actual_branch.keys_qty;
-            for (int i = 0; i < n_children; i++) {
+            for (int i = 0; i < n_keys; i++) {
                 if (rectangles_intersect(rec_to_search, actual_branch.keys[i])) {
                     remaining_nodes_indexes.push(actual_branch.children[i]);
                 }
