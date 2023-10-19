@@ -53,22 +53,6 @@ endif
 # These files will have .d instead of .o as the output.
 CPPFLAGS := $(INC_FLAGS) -MMD -MP -O3
 
-
-# The final build step.
-$(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
-	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
-
-# Build step for C source
-$(BUILD_DIR)/%.c.o: %.c
-	($(TEST_PATH_CMD) $(dir $@)) $(OR) (mkdir -p $(dir $@))
-	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
-
-# Build step for C++ source
-$(BUILD_DIR)/%.cpp.o: %.cpp
-	($(TEST_PATH_CMD) $(dir $@)) $(OR) (mkdir -p $(dir $@))
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
-
-
 pre_test_search: 
 OBJS := $(BUILD_DIR)/$(TEST_DIRS)/test_search.cpp.o \
 $(BUILD_DIR)/$(SRC_DIRS)/r_tree.cpp.o \
@@ -86,12 +70,37 @@ $(BUILD_DIR)/$(SRC_DIRS)/hilbert.cpp.o
 TARGET_EXEC:=$(TEST_DIRS)/test_tree_cons
 test_tree_cons: pre_test_tree_cons $(BUILD_DIR)/$(TARGET_EXEC);
 
+pre_experiment: 
+OBJS := $(BUILD_DIR)/$(SRC_DIRS)/experiment.cpp.o \
+$(BUILD_DIR)/$(SRC_DIRS)/r_tree.cpp.o \
+$(BUILD_DIR)/$(SRC_DIRS)/nearest_x.cpp.o \
+$(BUILD_DIR)/$(SRC_DIRS)/hilbert.cpp.o \
+$(BUILD_DIR)/$(SRC_DIRS)/sort_tile_recursive.cpp.o \
+$(BUILD_DIR)/$(SRC_DIRS)/search.cpp.o
+TARGET_EXEC:=$(SRC_DIRS)/experiment
+experiment: pre_experiment $(BUILD_DIR)/$(TARGET_EXEC);
+
+# The final build step.
+$(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
+	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
+
+# Build step for C source
+$(BUILD_DIR)/%.c.o: %.c
+	($(TEST_PATH_CMD) $(dir $@)) $(OR) (mkdir -p $(dir $@))
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+
+# Build step for C++ source
+$(BUILD_DIR)/%.cpp.o: %.cpp
+	($(TEST_PATH_CMD) $(dir $@)) $(OR) (mkdir -p $(dir $@))
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+
 $(BUILD_DIR)/$(TEST_DIRS)/test%: $(OBJS)
 	$(CXX) $^ -o $@ $(LDFLAGS)
 
 .PHONY: clean
 clean:
-	rm -r $(BUILD_DIR)
+	rm -r $(BUILD_DIR) 
+	rm -r ./experiments/*
 
 # Include the .d makefiles. The - at the front suppresses the errors of missing
 # Makefiles. Initially, all the .d files will be missing, and we don't want those
