@@ -6,8 +6,8 @@
 
 using namespace std;
 
-// #define MAX_CHILDREN 204 /* PARA CLUSTER DE 4096 BYTES. */
-#define MAX_CHILDREN 10 /* PARA CLUSTER DE 4096 BYTES. */
+#define MAX_CHILDREN 204 /* PARA CLUSTER DE 4096 BYTES. */
+// #define MAX_CHILDREN 10 /* PARA PRUEBAS. */
 
 
 typedef array<double, 2> Point;
