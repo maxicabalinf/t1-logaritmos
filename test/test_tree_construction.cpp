@@ -16,6 +16,9 @@ void test_readNode(void) {
 
     /* Crea archivo con nodos. */
     fstream node_source("test_extraction_source", ios::out | ios::binary);
+    if (!node_source.is_open()) {
+        exit(1);
+    }
     MaxChildrenArray<Rectangle> top_floor{{{1, 1, 3, 3}, {4, 4, 5, 5}}};
     vector<Node> expected_nodes = {
         Node({rectangles[0]}, {0}, 0, true),
@@ -34,6 +37,9 @@ void test_readNode(void) {
 
     /* Extracción de nodos. */
     node_source.open("test_extraction_source", ios::in | ios::binary);
+    if (!node_source.is_open()) {
+        exit(1);
+    }
     for (int i = 0; i < size(expected_nodes); i++) {
         Node extracted_node = Node::readNode(node_source, i);
         assert(extracted_node.toText() == expected_nodes[i].toText());
@@ -57,6 +63,9 @@ void test_nearestX(void) {
 
     /* Construcción esperada. */
     fstream expected_file("test_nearest_x_expected", ios::out | ios::binary);
+    if (!expected_file.is_open()) {
+        exit(1);
+    }
     vector<Node> expected_nodes = {
         Node({{1, 1, 1, 1}}, {0}, 1, true),
         Node({{2, 2, 2, 2}}, {0}, 1, true),
@@ -82,6 +91,9 @@ void test_nearestX(void) {
     /* Evalua resultados. */
     fstream obtained_file("test_nearest_x_result", ios::in | ios::binary);
     expected_file.open("test_nearest_x_expected", ios::in | ios::binary);
+    if (!expected_file.is_open()) {
+        exit(1);
+    }
     for (int i = 0; i < 8; i++) {
         Node obtained_node = Node::readNode(obtained_file, i);
         Node expected_node = Node::readNode(expected_file, i);
@@ -104,6 +116,9 @@ void test_hilbert(void) {
 
     /* Construcción esperada. */
     fstream expected_file("test_hilbert_expected", ios::out | ios::binary);
+    if (!expected_file.is_open()) {
+        exit(1);
+    }
     vector<Node> expected_nodes = {
         Node({0, 0, 0, 0}, {0}, 1, true),
         Node({0, 524288, 0, 524288}, {0}, 1, true),
@@ -126,6 +141,9 @@ void test_hilbert(void) {
     /* Evalua resultados. */
     fstream obtained_file("test_hilbert_result", ios::in | ios::binary);
     expected_file.open("test_hilbert_expected", ios::in | ios::binary);
+    if (!expected_file.is_open()) {
+        exit(1);
+    }
     for (int i = 0; i < size(expected_nodes); i++) {
         Node obtained_node = Node::readNode(obtained_file, i);
         Node expected_node = Node::readNode(expected_file, i);
@@ -154,6 +172,9 @@ void test_STR(void) {
 
     /* Construcción esperada. */
     fstream expected_file("test_sort_tile_recursive_expected", ios::out | ios::binary);
+    if (!expected_file.is_open()) {
+        exit(1);
+    }
     vector<Node> expected_nodes = {
         Node({{1, 1, 1, 1}}, {0}, 1, true),
         Node({{2, 2, 2, 2}}, {0}, 1, true),
@@ -195,7 +216,13 @@ void test_STR(void) {
 
     /* Evalua resultados. */
     fstream obtained_file("test_sort_tile_recursive_result", ios::in | ios::binary);
+    if (!obtained_file.is_open()) {
+        exit(1);
+    }
     expected_file.open("test_sort_tile_recursive_expected", ios::in | ios::binary);
+    if (!expected_file.is_open()) {
+        exit(1);
+    }
     for (int i = 0; i < size(expected_nodes); i++) {
         Node obtained_node = Node::readNode(obtained_file, i);
         Node expected_node = Node::readNode(expected_file, i);

@@ -5,6 +5,10 @@
 
 #include "r_tree.h"
 
+string rectangle_to_string(Rectangle r) {
+    return "<" + to_string(r[0]) + "," + to_string(r[1]) + "," + to_string(r[2]) + "," + to_string(r[3]) + ">";
+}
+
 // Busqueda dentro de un R-tree: buscar todos los nodos hojas que intersecten al rectangulo
 
 /**
@@ -32,6 +36,10 @@ bool rectangles_intersect(Rectangle rec1, Rectangle rec2) {
  */
 vector<Node> file_to_r_tree(string file_name) {
     fstream nodes_source(file_name, ios::in | ios::binary);
+    if (!nodes_source.is_open()) {
+        cout << "Error opening file: " << file_name;
+        exit(1);
+    }
     vector<Node> r_tree;
     long int max_nodes = ceil(sizeof(nodes_source) / sizeof(Node));
     long int i = 0;
@@ -53,6 +61,10 @@ tuple<vector<Rectangle>, int> Node::r_tree_rectangle_search(Rectangle rec_to_sea
     // TODO clear cache
     queue<int> remaining_nodes_indexes;
     fstream tree_file(filename, ios::in | ios::binary);
+    if (!tree_file.is_open()) {
+        cout << "SEARCH | Error opening file: " << filename;
+        exit(1);
+    }
     tree_file.seekg(0, ios::end);
     int file_size = tree_file.tellg();
     int n_nodes = file_size / sizeof(Node);
@@ -67,6 +79,9 @@ tuple<vector<Rectangle>, int> Node::r_tree_rectangle_search(Rectangle rec_to_sea
         if (actual_branch.is_leaf) {
             if (rectangles_intersect(rec_to_search, actual_branch.keys[0])) {
                 results.push_back(actual_branch.keys[0]);
+                // cout << "FOUND RECTANGLE!: "
+                //      << rectangle_to_string(actual_branch.keys[0])
+                //      << endl;
             }
         } else {
             for (int i = 0; i < n_keys; i++) {

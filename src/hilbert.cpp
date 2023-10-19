@@ -55,6 +55,10 @@ bool sort_by_hilbert(const tuple<Point, Node, Rectangle>& a, const tuple<Point, 
 void Node::r_tree_hilbert(vector<Rectangle> initial_associated_rectangles, int M, string file_name) {
     ofstream tree_file; /* Archivo que almacena el árbol resultante. */
     tree_file.open(file_name, ios::out | ios::binary);
+    if (!tree_file.is_open()) {
+        cout << "Error opening file: " << file_name; 
+        exit(1);
+    }
 
     int written_nodes = 0; /* Contador de nodos escritos en archivo. */
     int first_iteration = true;

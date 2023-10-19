@@ -9,6 +9,9 @@ void test_search(void) {
     Rectangle to_search = {1, 1, 2, 2};
 
     fstream expected_file("r_tree", ios::out | ios::binary);
+    if (!expected_file.is_open()) {
+        exit(1);
+    }
     vector<Node> expected_nodes = {
         Node({{1, 1, 1, 1}}, {0}, 1, true),
         Node({{2, 2, 2, 2}}, {0}, 1, true),
