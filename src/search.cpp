@@ -47,9 +47,6 @@ vector<Node> file_to_r_tree(string file_name) {
  * @brief Busca en un R-tree todos los rectangulos que intersecten a un rectangulo R.
  *
  * @param rec_to_serach El rectangulo R a intersectar.
- * @param to_fill El vector de rectangulos a llenar con los rectangulos que intersectan a R.
- * @param r_tree El R-tree en donde buscar, representado como un vector de nodos.
- * @param index La llave del nodo a evaluar, se parte con el nodo raiz.
  *
  */
 tuple<vector<Rectangle>, int> Node::r_tree_rectangle_search(Rectangle rec_to_search, string filename) {
