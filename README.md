@@ -47,3 +47,13 @@ En este archivo se encuentra definido el método constructor de R-Tree usando el
 ```c++
 void Node::r_tree_nearest_X(vector<Rectangle> initial_associated_rectangles, int M, string file_name)
 ```
+Crea y abre un archivo binario de nombre **file_name** y lo rellena con los nodos del arbol, parte del último nivel de este (los nodos hoja) hasta el nodo raiz. 
+
+- Primero: convierte **initial_associated_rectangles** a nodo, luego calcula los centro de cada nodo para luego ordenarlos por la coordenada X del centro.
+- Segundo: a partir del parámetro **M**, calculamos el número de nodos padres y dividimos la lista ordenada en dicho número con M nodos por grupo, luego creamos un nodo padre para cada grupo.
+- Tercero: calcula el MBR asociado a cada nodo padre y lo coloca en una lista.
+- Cuarto: si la cantidad de nodos padre es distinta de 1, se repite el procedimiento dejando la lista de MBR de los nodos padres en **initial_associated_rectangles**.
+De esta forma el arbol queda guardado en **file_name**.
+
+# hilbert
+
