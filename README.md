@@ -7,7 +7,7 @@ A continuación se resumirá el contenido en cada archivo:
 
 # r_tree
 
-En este archivo se encuentran definidas las estructuras **Rectangle** y **Nodo** de la siguiente forma:
+En este archivo se encuentran definidas las estructuras **Rectangle** y **Node** de la siguiente forma:
 ```c++
 typedef array<long int, 4> Rectangle;
 template <typename T>
