@@ -4,10 +4,10 @@
 #include <iostream>
 #include <vector>
 
-#include "../src/exec.h"
-#include "../src/hilbert.h"
-#include "../src/r_tree.h"
-#include "../src/search.h"
+#include "exec.h"
+#include "hilbert.h"
+#include "r_tree.h"
+#include "search.h"
 
 const string EXPERIMENTS_FOLDER = "./experiments";
 
@@ -126,11 +126,6 @@ int main() {
         exit(1);
     }
 
-    // /* {n, [stats_tiempo, stats_lecturas]}, donde
-    // stats es de tipo [[mean1, std_dev1, conf99_1, conf95_1],...,[mean3, std_dev3, conf99_3, conf95_3]], que contiene las medias, dev_st e intervalos de confianza del 99% y 95% de una muestra.
-    // E.g. {10, {...}} contiene las estadísticas de tiempo y lecturas de los tres tipos de árbol para n=2^10. */
-    // map<int, vector<map<string, stats>>> exp_result;
-
     // Generador de casos de prueba
     for (int i = 17; i <= 25; i++) {
         cout << "n=2^" << i << endl;
@@ -166,7 +161,6 @@ int main() {
             measurement_stats["time"] = calculate_stats(time_samples);
             measurement_stats["access"] = calculate_stats(access_samples);
             save_results(results, n, build_methods[k], measurement_stats);
-            // exp_result[i].push_back(measurement_stats);
         }
         cout << "DONE n=2^" << i << endl;
     }
