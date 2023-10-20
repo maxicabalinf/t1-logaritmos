@@ -21,7 +21,7 @@ class Node {
 }
 ```
 
-Donde Rectangle tiene la forma {x_min, y_min, x_max, y_max} y los campos de Nodo son:
+Donde Rectangle tiene la forma {x_min, y_min, x_max, y_max} y los campos de Node son:
 
 - keys: los Rectangle MBR asociados a los hijos del Nodo.
 - children: los índices de los nodos hijos.
@@ -50,9 +50,9 @@ void Node::r_tree_nearest_X(vector<Rectangle> initial_associated_rectangles, int
 ```
 Crea y abre un archivo binario de nombre **file_name** y lo rellena con los nodos del arbol, parte de la última generación (los nodos hoja) hasta el nodo raiz. Luego realiza el siguiente procedimiento:
 
-- Primero: convierte **initial_associated_rectangles** a nodo, luego calcula los centro de cada nodo para luego ordenarlos por la coordenada X de su centro.
+- Primero: convierte **initial_associated_rectangles** a Node, luego calcula los centro de cada nodo para luego ordenarlos por la coordenada X de su centro.
 - Segundo: a partir del parámetro **M**, calculamos el número de nodos padres y dividimos la lista ordenada en dicho número con M nodos por grupo, luego creamos un nodo padre para cada grupo.
-- Tercero: calcula el MBR asociado a cada nodo padre y los coloca en una lista.
+- Tercero: calcula el MBR asociado a cada nodo padre y se colocan en una lista.
 - Cuarto: si la cantidad de nodos padre es distinta de 1, se repite el procedimiento dejando la lista de MBR de los nodos padres en **initial_associated_rectangles**.
 
 De esta forma el arbol queda guardado en **file_name**.
@@ -100,3 +100,37 @@ Este método busca en un R-Tree ubicado en el archivo **filename** todos los rec
 Para esto realiza una búsqueda secuencial donde, comenzando en el nodo raíz, evalua si hay una intersección entre **rec_to_search** y alguno de los Rectangles dentro del campo keys del nodo, de ser asi busca en el nodo asociado a dicho Rectangle y asi sucesivamente hasta llegar a la hoja. Repite este procedimiento para todos los nodos pero solo accediendo a los cuales se encuentra una interseccion con su MBR asociado. 
 
 La función finalmente retorna un vector con los Rectangle que intersectan a **rec_to_search** en una tupla junto con el número de accesos realizados a memoria durante la búsqueda.
+
+# test_search
+
+En este archivo se encuentra el test para comprobar el correcto funcionamiento de **r_tree_rectangle_search**. Para esto se ingresa un set de rectángulos y un rectangulo para consultar, luego se calcula manualmente los rectángulos intersectados y se compara con los rectángulos generados por la función.
+Para correr el test, se abre la terminal en la carpeta del proyecto y se ingresan los siguientes comandos:
+
+```bash
+$ comando1
+$ comando2
+$ comando3
+```
+
+# test_tree_construction
+
+En este archivo se encuentra el test para comprobar el correcto funcionamiento de los constructores **r_tree_nearest_X**, **r_tree_hilbert** y  **r_tree_sort_tile_recursive**. Para esto se ingresan un set de rectángulos en cada constructor y se calcula manuelmente el árbol correspondiente luego se comparan con los generados por las funciones. 
+Para correr el test, se abre la terminal en la carpeta del proyecto y se ingresan los siguientes comandos:
+
+```bash
+$ comando1
+$ comando2
+$ comando3
+```
+
+# experiment
+
+En este archivo se encuentra el experimento. Para cada valor de n con n={2^10, ...,2^24, 2^25} se genera un set de rectángulos R y un set de rectángulos Q, luego con el set R se crean R-Trees con cada constructor y se realizan consultas a estos usando el set Q, guradando en cada consulta los tiempos de ellas y los accesos a disco. 
+Se generan promedios por cada set de datos que entrega para poder comparar la información por cada constructor.
+Para correr el test, se abre la terminal en la carpeta del proyecto y se ingresan los siguientes comandos:
+
+```bash
+$ comando1
+$ comando2
+$ comando3
+```
