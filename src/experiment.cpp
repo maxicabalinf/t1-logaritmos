@@ -127,7 +127,7 @@ int main() {
     }
 
     // Generador de casos de prueba
-    for (int i = 17; i <= 25; i++) {
+    for (int i = 10; i <= 25; i++) {
         cout << "n=2^" << i << endl;
         long int n = pow(2, i);
         cout << "n=" << n << endl;
