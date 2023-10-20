@@ -67,8 +67,6 @@ stats calculate_stats(vector<double> samples) {
                    std::bind2nd(std::minus<double>(), mean));
     double sq_sum = std::inner_product(diff.begin(), diff.end(), diff.begin(), 0.0);
     double stdev = std::sqrt(sq_sum / samples.size());
-    pair<double, double> conf_in_99 = confidence_interval(99, mean, stdev);
-    pair<double, double> conf_in_95 = confidence_interval(95, mean, stdev);
 
     return make_tuple(mean, stdev,
                       confidence_interval(99, mean, stdev),
