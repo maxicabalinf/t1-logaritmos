@@ -4,8 +4,6 @@
 #include "../src/hilbert.h"
 #include "../src/r_tree.h"
 
-#define N 5
-
 void test_readNode(void) {
     /* Rectangulos iniciales. */
     vector<Rectangle> rectangles{{{1, 1, 1, 1},
@@ -131,7 +129,8 @@ void test_hilbert(void) {
               (Rectangle){524288, 0, 524288, 0}},
              {2, 3}, 2),
         Node({(Rectangle){0, 0, 0, 524288},
-              (Rectangle){524288, 0, 524288, 524288}}, {4,5}, 2)};
+              (Rectangle){524288, 0, 524288, 524288}},
+             {4, 5}, 2)};
 
     for (int i = 0; i < size(expected_nodes); i++) {
         expected_file.write((char *)&expected_nodes[i], sizeof(Node));
