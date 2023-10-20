@@ -7,8 +7,6 @@
 using namespace std;
 
 #define MAX_CHILDREN 204 /* PARA CLUSTER DE 4096 BYTES. */
-// #define MAX_CHILDREN 10 /* PARA PRUEBAS. */
-
 
 typedef array<double, 2> Point;
 
@@ -52,3 +50,11 @@ class Node {
 bool sort_by_X(const tuple<Point, Node, Rectangle>& a, const tuple<Point, Node, Rectangle>& b);
 
 bool sort_by_Y(const tuple<Point, Node, Rectangle>& a, const tuple<Point, Node, Rectangle>& b);
+
+void generic_tree_builder(vector<Rectangle> initial_associated_rectangles, int M, string file_name, string method_name, function<void(vector<tuple<Point, Node, Rectangle>>&, void*)> sorting_phase);
+
+typedef struct {
+    long int n;
+    int M;
+    long int S;
+} TreeBuildingVars;
