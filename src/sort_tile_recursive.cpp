@@ -24,7 +24,6 @@ void srt_sorting(vector<tuple<Point, Node, Rectangle>> &associations, void *ptr)
         /* Identifica franja vertical. */
         long int start = i * S * M;
         long int end = ((i + 1) * S * M <= n) ? (i + 1) * S * M : n;
-        long int n_children = end - start;
         /* Ordena franja vertical según la ordenada. */
         sort(associations.begin() + start, associations.begin() + end, sort_by_Y);
     }

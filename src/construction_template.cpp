@@ -10,7 +10,6 @@ void generic_tree_builder(vector<Rectangle> initial_associated_rectangles, int M
     cout << method_name << " | File opened" << endl;
 
     long int written_nodes = 0; /* Contador de nodos escritos en archivo. */
-    int first_iteration = true;
     vector<Node> nodes;
     vector<Rectangle> associated_rectangles = initial_associated_rectangles;
     long int n = size(initial_associated_rectangles); /* Cantidad de nodos que se está usando. */
