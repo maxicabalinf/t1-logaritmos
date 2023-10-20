@@ -10,6 +10,7 @@
 using namespace std;
 
 void nearest_x_sorting(vector<tuple<Point, Node, Rectangle>> &associations, void *_) {
+    UNUSED(_);
     sort(associations.begin(), associations.end(), sort_by_X);
 }
 

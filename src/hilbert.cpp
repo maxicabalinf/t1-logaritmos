@@ -45,6 +45,7 @@ bool sort_by_hilbert(const tuple<Point, Node, Rectangle>& a, const tuple<Point, 
 };
 
 void hilbert_sorting(vector<tuple<Point, Node, Rectangle>>& associations, void* _) {
+    UNUSED(_);
     sort(associations.begin(), associations.end(), sort_by_hilbert);
 }
 

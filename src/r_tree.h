@@ -6,6 +6,8 @@
 
 using namespace std;
 
+#define UNUSED(x) (void)(x)
+
 #define MAX_CHILDREN 204 /* PARA CLUSTER DE 4096 BYTES. */
 
 typedef array<double, 2> Point;
