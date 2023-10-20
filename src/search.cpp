@@ -4,6 +4,7 @@
 #include <tuple>
 
 #include "r_tree.h"
+#include "exec.h"
 
 string rectangle_to_string(Rectangle r) {
     return "<" + to_string(r[0]) + "," + to_string(r[1]) + "," + to_string(r[2]) + "," + to_string(r[3]) + ">";
@@ -58,7 +59,7 @@ vector<Node> file_to_r_tree(string file_name) {
  *
  */
 tuple<vector<Rectangle>, int> Node::r_tree_rectangle_search(Rectangle rec_to_search, string filename) {
-    // TODO clear cache
+    exec("echo 3 > /proc/sys/vm/drop_caches");
     queue<int> remaining_nodes_indexes;
     fstream tree_file(filename, ios::in | ios::binary);
     if (!tree_file.is_open()) {
