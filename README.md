@@ -107,9 +107,7 @@ En este archivo se encuentra el test para comprobar el correcto funcionamiento d
 Para correr el test, se abre la terminal en la carpeta del proyecto y se ingresan los siguientes comandos:
 
 ```bash
-$ comando1
-$ comando2
-$ comando3
+make test_search
 ```
 
 # test_tree_construction
@@ -118,9 +116,7 @@ En este archivo se encuentra el test para comprobar el correcto funcionamiento d
 Para correr el test, se abre la terminal en la carpeta del proyecto y se ingresan los siguientes comandos:
 
 ```bash
-$ comando1
-$ comando2
-$ comando3
+$ make test_tree_cons
 ```
 
 # experiment
@@ -128,9 +124,7 @@ $ comando3
 En este archivo se encuentra el experimento. Para cada valor de n con n={2^10, ...,2^24, 2^25} se genera un set de rectángulos R y un set de rectángulos Q, luego con el set R se crean R-Trees con cada constructor y se realizan consultas a estos usando el set Q, guradando en cada consulta los tiempos de ellas y los accesos a disco. 
 Se generan promedios por cada set de datos que entrega para poder comparar la información por cada constructor.
 Para correr el test, se abre la terminal en la carpeta del proyecto y se ingresan los siguientes comandos:
-
 ```bash
-$ comando1
-$ comando2
-$ comando3
+make experiment
 ```
+Antes de ejecutar el comando, se debe dejar comentado los comandos pre_test_tree_cons: y pre_test_search dentro del Makefile y hay que crear manualmente la carpeta experiment de lo contrario no va a compilar el comando.
